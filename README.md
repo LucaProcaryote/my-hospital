@@ -52,6 +52,24 @@ value would send four of the five to the wrong database.
 The device buttons append `?device=DEV1` … `?device=DEV10` to the simulator's
 URL. Ten students, one deployment, no per-student build.
 
+## Administration
+
+The portal is also the way in to account management: an **Administration**
+page that lists everybody who can sign in, and lets an administrator create
+accounts, change roles, reset passwords, disable and delete.
+
+It needs two things, and says which one is missing when it does not have them:
+
+| | What it is | How to set it |
+| --- | --- | --- |
+| `ADMIN_API_URL` | the API service that mounts `/admin` | repository variable, or `?admin=<url>` |
+| `FIREBASE_*` | the project the administrator signs in against | repository variables, as for the five applications |
+
+Nothing privileged happens in this page. Setting a role means writing a custom
+claim, which needs credentials no web build may hold, so the console asks the
+server, carrying the administrator's own Firebase token, and the server checks
+it again. See `Dev_Central/FIREBASE.md`, section 1.
+
 ## Running it
 
 ```bash

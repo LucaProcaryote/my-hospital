@@ -28,5 +28,76 @@
         "type": "String"
       }
     }
+  },
+  "adminTitle": "Administration",
+  "adminIntro": "Create the people who sign in, and decide what each of them is allowed to do.",
+  "adminUnavailableTitle": "No administration API is configured",
+  "adminUnavailableBody": "Accounts can only be managed by a server: giving someone a role means writing a custom claim, and that needs credentials no web page may hold. Deploy the API and point the portal at it with ADMIN_API_URL, or add ?admin=<url> to this address. Until then, use Dev_Central/tools/setup_firebase_auth.sh.",
+  "adminFirebaseMissingTitle": "Firebase is not configured in this build",
+  "adminFirebaseMissingBody": "The console signs you in with Firebase before it will talk to the API. This build was made without the project's keys, so there is nobody to sign in as.",
+  "adminSignInTitle": "Sign in as an administrator",
+  "adminSignInBody": "Only an account whose role is administrator can manage the others.",
+  "adminEmail": "E-mail",
+  "adminPassword": "Password",
+  "adminSignIn": "Sign in",
+  "adminSignOut": "Sign out",
+  "adminNotAdminTitle": "This account cannot administer the hospital",
+  "adminNotAdminBody": "You are signed in as {role}. Ask an administrator to change your role, or sign in with the administrator account.",
+  "@adminNotAdminBody": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "adminSignedInAs": "Signed in as {email}",
+  "@adminSignedInAs": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "adminAccounts": "Accounts",
+  "adminRefresh": "Refresh",
+  "adminAddUser": "New account",
+  "adminDisplayName": "Name",
+  "adminRole": "Role",
+  "adminNoRole": "No role (signs in as a student)",
+  "adminEnabled": "Active",
+  "adminDisabled": "Disabled",
+  "adminLastSignIn": "Last sign-in",
+  "adminNever": "Never",
+  "adminCreate": "Create",
+  "adminCancel": "Cancel",
+  "adminNewPassword": "New password",
+  "adminSetPassword": "Change password",
+  "adminDelete": "Delete",
+  "adminDeleteTitle": "Delete this account?",
+  "adminDeleteBody": "{email} will no longer be able to sign in anywhere. Their records in the hospital databases are not touched.",
+  "@adminDeleteBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "adminPasswordRule": "At least eight characters.",
+  "adminRoleTakesEffect": "The new role applies the next time they sign in.",
+  "adminNoAccounts": "No accounts yet.",
+  "adminSaved": "Saved.",
+  "adminRequired": "Required",
+  "adminErrorEmailExists": "There is already an account with that address.",
+  "adminErrorWeakPassword": "That password is too short - eight characters at least.",
+  "adminErrorSelf": "You cannot do that to your own account. Somebody has to stay an administrator.",
+  "adminErrorUnreachable": "The administration API did not answer. Check the address, and that the service is running.",
+  "adminErrorNotAdmin": "The API refused: this account is not an administrator.",
+  "adminErrorGeneric": "The API refused: {code}",
+  "@adminErrorGeneric": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
   }
 }

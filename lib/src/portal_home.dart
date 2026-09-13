@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hospital_core/hospital_core.dart';
 
+import 'admin/admin_config.dart';
+import 'admin/admin_screen.dart';
 import 'l10n/generated/portal_localizations.dart';
 import 'launch_targets.dart';
 import 'widgets/application_card.dart';
@@ -9,17 +11,23 @@ import 'widgets/open_link.dart';
 
 /// One page: the five applications, then the ten device simulators.
 class PortalHome extends StatelessWidget {
-  const PortalHome({super.key, this.targets});
+  const PortalHome({super.key, this.targets, this.adminConfig});
 
   /// Injectable for tests; in the running application it comes from the
   /// dart-defines and the query string.
   final LaunchTargets? targets;
+
+  /// Where the administration API lives. Same story: compiled in, or given in
+  /// the query string.
+  final AdminConfig? adminConfig;
 
   static const String repositoryUrl = 'https://github.com/LucaProcaryote';
 
   @override
   Widget build(BuildContext context) {
     final resolved = targets ?? LaunchTargets.fromEnvironment();
+    final admin =
+        adminConfig ?? AdminConfig.resolve(query: AppConfig.queryOverrides());
     final theme = Theme.of(context);
     final l10n = PortalLocalizations.of(context);
     final shared = HospitalLocalizations.of(context);
@@ -55,6 +63,18 @@ class PortalHome extends StatelessWidget {
                 ),
                 Gap.h16,
                 DeviceLauncher(targets: resolved),
+
+                Gap.h32,
+                _SectionHeading(l10n.adminTitle),
+                Gap.h8,
+                Text(
+                  l10n.adminIntro,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                Gap.h16,
+                _AdminEntry(config: admin),
 
                 Gap.h32,
                 const Divider(),
@@ -110,6 +130,52 @@ class _Masthead extends StatelessWidget {
         ),
         Text(tagline, style: theme.textTheme.titleMedium),
       ],
+    );
+  }
+}
+
+/// The way in to the administration console.
+///
+/// Shown whether or not an API is configured: the console itself explains what
+/// is missing, which is more use than a button that quietly is not there.
+class _AdminEntry extends StatelessWidget {
+  const _AdminEntry({required this.config});
+
+  final AdminConfig config;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = PortalLocalizations.of(context);
+
+    return Card(
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: Gap.md,
+          vertical: Gap.sm,
+        ),
+        leading: CircleAvatar(
+          backgroundColor: theme.colorScheme.primaryContainer,
+          child: Icon(
+            Icons.admin_panel_settings_rounded,
+            color: theme.colorScheme.onPrimaryContainer,
+          ),
+        ),
+        title: Text(
+          l10n.adminAccounts,
+          style: const TextStyle(fontWeight: FontWeight.w600),
+        ),
+        subtitle: Text(
+          config.isConfigured ? config.apiBase : l10n.adminUnavailableTitle,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.bodySmall,
+        ),
+        trailing: const Icon(Icons.chevron_right_rounded),
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(builder: (_) => AdminScreen(config: config)),
+        ),
+      ),
     );
   }
 }
