@@ -88,7 +88,10 @@ void main() {
       );
 
       expect(targets.hostFor(HospitalApp.pharm), 'localhost:8083');
-      expect(targets.hostFor(HospitalApp.ehr), 'my-hospital-ehr.procaryote.com');
+      expect(
+        targets.hostFor(HospitalApp.ehr),
+        'my-hospital-ehr.procaryote.com',
+      );
     });
   });
 
