@@ -20,6 +20,8 @@ dependencies:
   hospital_core:
     path: packages/hospital_core
 
+  # The administration console talks to the API server's /admin routes.
+  http: ^1.2.0
   intl: any
   provider: ^6.1.0
   url_launcher: ^6.3.0

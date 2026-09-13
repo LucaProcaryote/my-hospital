@@ -140,6 +140,15 @@ void main() {
       }
     });
 
+    testWidgets('offers a way into the administration console', (
+      WidgetTester tester,
+    ) async {
+      await pump(tester);
+
+      expect(find.text('Administration'), findsOneWidget);
+      expect(find.text('Accounts'), findsOneWidget);
+    });
+
     testWidgets('shows where each link goes before it is clicked', (
       WidgetTester tester,
     ) async {

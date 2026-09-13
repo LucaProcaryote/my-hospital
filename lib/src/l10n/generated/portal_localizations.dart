@@ -189,6 +189,264 @@ abstract class PortalLocalizations {
   /// In en, this message translates to:
   /// **'Could not open {url}'**
   String portalUnreachable(String url);
+
+  /// No description provided for @adminTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Administration'**
+  String get adminTitle;
+
+  /// No description provided for @adminIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Create the people who sign in, and decide what each of them is allowed to do.'**
+  String get adminIntro;
+
+  /// No description provided for @adminUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No administration API is configured'**
+  String get adminUnavailableTitle;
+
+  /// No description provided for @adminUnavailableBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Accounts can only be managed by a server: giving someone a role means writing a custom claim, and that needs credentials no web page may hold. Deploy the API and point the portal at it with ADMIN_API_URL, or add ?admin=<url> to this address. Until then, use Dev_Central/tools/setup_firebase_auth.sh.'**
+  String get adminUnavailableBody;
+
+  /// No description provided for @adminFirebaseMissingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Firebase is not configured in this build'**
+  String get adminFirebaseMissingTitle;
+
+  /// No description provided for @adminFirebaseMissingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The console signs you in with Firebase before it will talk to the API. This build was made without the project\'s keys, so there is nobody to sign in as.'**
+  String get adminFirebaseMissingBody;
+
+  /// No description provided for @adminSignInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in as an administrator'**
+  String get adminSignInTitle;
+
+  /// No description provided for @adminSignInBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Only an account whose role is administrator can manage the others.'**
+  String get adminSignInBody;
+
+  /// No description provided for @adminEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'E-mail'**
+  String get adminEmail;
+
+  /// No description provided for @adminPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get adminPassword;
+
+  /// No description provided for @adminSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get adminSignIn;
+
+  /// No description provided for @adminSignOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get adminSignOut;
+
+  /// No description provided for @adminNotAdminTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This account cannot administer the hospital'**
+  String get adminNotAdminTitle;
+
+  /// No description provided for @adminNotAdminBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You are signed in as {role}. Ask an administrator to change your role, or sign in with the administrator account.'**
+  String adminNotAdminBody(String role);
+
+  /// No description provided for @adminSignedInAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in as {email}'**
+  String adminSignedInAs(String email);
+
+  /// No description provided for @adminAccounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Accounts'**
+  String get adminAccounts;
+
+  /// No description provided for @adminRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get adminRefresh;
+
+  /// No description provided for @adminAddUser.
+  ///
+  /// In en, this message translates to:
+  /// **'New account'**
+  String get adminAddUser;
+
+  /// No description provided for @adminDisplayName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get adminDisplayName;
+
+  /// No description provided for @adminRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Role'**
+  String get adminRole;
+
+  /// No description provided for @adminNoRole.
+  ///
+  /// In en, this message translates to:
+  /// **'No role (signs in as a student)'**
+  String get adminNoRole;
+
+  /// No description provided for @adminEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get adminEnabled;
+
+  /// No description provided for @adminDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get adminDisabled;
+
+  /// No description provided for @adminLastSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Last sign-in'**
+  String get adminLastSignIn;
+
+  /// No description provided for @adminNever.
+  ///
+  /// In en, this message translates to:
+  /// **'Never'**
+  String get adminNever;
+
+  /// No description provided for @adminCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get adminCreate;
+
+  /// No description provided for @adminCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get adminCancel;
+
+  /// No description provided for @adminNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get adminNewPassword;
+
+  /// No description provided for @adminSetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get adminSetPassword;
+
+  /// No description provided for @adminDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get adminDelete;
+
+  /// No description provided for @adminDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this account?'**
+  String get adminDeleteTitle;
+
+  /// No description provided for @adminDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{email} will no longer be able to sign in anywhere. Their records in the hospital databases are not touched.'**
+  String adminDeleteBody(String email);
+
+  /// No description provided for @adminPasswordRule.
+  ///
+  /// In en, this message translates to:
+  /// **'At least eight characters.'**
+  String get adminPasswordRule;
+
+  /// No description provided for @adminRoleTakesEffect.
+  ///
+  /// In en, this message translates to:
+  /// **'The new role applies the next time they sign in.'**
+  String get adminRoleTakesEffect;
+
+  /// No description provided for @adminNoAccounts.
+  ///
+  /// In en, this message translates to:
+  /// **'No accounts yet.'**
+  String get adminNoAccounts;
+
+  /// No description provided for @adminSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved.'**
+  String get adminSaved;
+
+  /// No description provided for @adminRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get adminRequired;
+
+  /// No description provided for @adminErrorEmailExists.
+  ///
+  /// In en, this message translates to:
+  /// **'There is already an account with that address.'**
+  String get adminErrorEmailExists;
+
+  /// No description provided for @adminErrorWeakPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'That password is too short - eight characters at least.'**
+  String get adminErrorWeakPassword;
+
+  /// No description provided for @adminErrorSelf.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot do that to your own account. Somebody has to stay an administrator.'**
+  String get adminErrorSelf;
+
+  /// No description provided for @adminErrorUnreachable.
+  ///
+  /// In en, this message translates to:
+  /// **'The administration API did not answer. Check the address, and that the service is running.'**
+  String get adminErrorUnreachable;
+
+  /// No description provided for @adminErrorNotAdmin.
+  ///
+  /// In en, this message translates to:
+  /// **'The API refused: this account is not an administrator.'**
+  String get adminErrorNotAdmin;
+
+  /// No description provided for @adminErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'The API refused: {code}'**
+  String adminErrorGeneric(String code);
 }
 
 class _PortalLocalizationsDelegate

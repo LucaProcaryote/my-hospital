@@ -55,12 +55,31 @@ jobs:
           PHARM_URL: ${{ vars.PHARM_URL }}
           EAI_URL: ${{ vars.EAI_URL }}
           DEVICE_URL: ${{ vars.DEVICE_URL }}
+
+          # The administration console. ADMIN_API_URL is the API service that
+          # mounts /admin - the EHR one unless deploy_api.sh was told
+          # otherwise. The Firebase values are what the console signs the
+          # administrator in with; without them it says so and does nothing.
+          # None of these is a secret, which is why they are variables: a web
+          # API key identifies a project, it does not authorise anything.
+          ADMIN_API_URL: ${{ vars.ADMIN_API_URL }}
+          FIREBASE_API_KEY: ${{ vars.FIREBASE_API_KEY }}
+          FIREBASE_APP_ID: ${{ vars.FIREBASE_APP_ID }}
+          FIREBASE_MESSAGING_SENDER_ID: ${{ vars.FIREBASE_MESSAGING_SENDER_ID }}
+          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
         run: |
           defines=()
-          for name in EHR_URL ADT_URL PHARM_URL EAI_URL DEVICE_URL; do
+          for name in EHR_URL ADT_URL PHARM_URL EAI_URL DEVICE_URL \
+                      ADMIN_API_URL FIREBASE_API_KEY FIREBASE_APP_ID \
+                      FIREBASE_MESSAGING_SENDER_ID FIREBASE_PROJECT_ID; do
             value="${!name}"
             [ -n "$value" ] && defines+=(--dart-define="$name=$value")
           done
+
+          if [ -z "$ADMIN_API_URL" ]; then
+            echo "::notice::ADMIN_API_URL is not set, so the portal's"\
+                 "administration console will say it has no API to talk to."
+          fi
 
           # Self-host CanvasKit: see tools/deploy_hosting.sh for why.
           flutter build web --release --no-web-resources-cdn "${defines[@]}"
