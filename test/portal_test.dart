@@ -13,11 +13,11 @@ void main() {
 
       expect(
         targets.urlFor(HospitalApp.ehr),
-        'https://my-hospital-2026-ehr.web.app',
+        'https://my-hospital-ehr.procaryote.com',
       );
       expect(
         targets.urlFor(HospitalApp.device),
-        'https://my-hospital-2026-dev.web.app',
+        'https://my-hospital-dev.procaryote.com',
       );
     });
 
@@ -54,7 +54,7 @@ void main() {
       expect(targets.urlForDevice(7), contains('device=DEV7'));
       expect(
         targets.urlForDevice(7),
-        startsWith('https://my-hospital-2026-dev.web.app'),
+        startsWith('https://my-hospital-dev.procaryote.com'),
       );
     });
 
@@ -88,7 +88,7 @@ void main() {
       );
 
       expect(targets.hostFor(HospitalApp.pharm), 'localhost:8083');
-      expect(targets.hostFor(HospitalApp.ehr), 'my-hospital-2026-ehr.web.app');
+      expect(targets.hostFor(HospitalApp.ehr), 'my-hospital-ehr.procaryote.com');
     });
   });
 
