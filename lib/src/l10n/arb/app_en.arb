@@ -1,0 +1,32 @@
+{
+  "@@locale": "en",
+  "portalTagline": "A teaching hospital you can click through.",
+  "portalIntro": "Five applications sharing one patient population. Open them side by side and watch an admission in ADT reach the record in EHR.",
+  "portalApplications": "Applications",
+  "portalDevices": "Connected devices",
+  "portalDevicesBody": "Ten simulators, one per student. Each publishes weight, temperature, heart rate, oxygen saturation and activity.",
+  "portalOpen": "Open",
+  "portalOpensNewTab": "Opens in a new tab",
+  "portalDescEhr": "Patient file, prescriptions, observations and clinical notes.",
+  "portalDescAdt": "Admissions, transfers and discharges, on a live bed board.",
+  "portalDescPharm": "The cabinet: stock, controlled drugs and dispensing.",
+  "portalDescEai": "FHIR resources, messages, and a visual editor for integration flows.",
+  "portalDescDevice": "Vital-sign simulators, and readings from a connected watch.",
+  "portalDeviceNumber": "Device {number}",
+  "@portalDeviceNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "portalSource": "Source code",
+  "portalUnreachable": "Could not open {url}",
+  "@portalUnreachable": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "@@locale": "nl",
+  "portalTagline": "Een leerziekenhuis op klikafstand.",
+  "portalIntro": "Vijf toepassingen met dezelfde patiëntenpopulatie. Open ze naast elkaar en volg een opname van ADT tot in het dossier.",
+  "portalApplications": "Toepassingen",
+  "portalDevices": "Verbonden apparaten",
+  "portalDevicesBody": "Tien simulatoren, één per student. Elk publiceert gewicht, temperatuur, hartslag, zuurstofsaturatie en activiteit.",
+  "portalOpen": "Openen",
+  "portalOpensNewTab": "Opent in een nieuw tabblad",
+  "portalDescEhr": "Patiëntendossier, voorschriften, observaties en klinische notities.",
+  "portalDescAdt": "Opnames, transfers en ontslagen, op een bedbord.",
+  "portalDescPharm": "De kast: voorraad, verdovende middelen en aflevering.",
+  "portalDescEai": "FHIR-resources, berichten en een visuele editor voor integratiestromen.",
+  "portalDescDevice": "Simulatoren voor vitale parameters en metingen van een smartwatch.",
+  "portalDeviceNumber": "Apparaat {number}",
+  "portalSource": "Broncode",
+  "portalUnreachable": "Kan {url} niet openen"
+}
