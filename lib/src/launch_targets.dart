@@ -28,11 +28,11 @@ class LaunchTargets {
   final String? auth;
 
   static const Map<HospitalApp, String> defaultUrls = <HospitalApp, String>{
-    HospitalApp.ehr: 'https://my-hospital-2026-ehr.web.app',
-    HospitalApp.adt: 'https://my-hospital-2026-adt.web.app',
-    HospitalApp.pharm: 'https://my-hospital-2026-pharm.web.app',
-    HospitalApp.eai: 'https://my-hospital-2026-eai.web.app',
-    HospitalApp.device: 'https://my-hospital-2026-dev.web.app',
+    HospitalApp.ehr: 'https://my-hospital-ehr.procaryote.com',
+    HospitalApp.adt: 'https://my-hospital-adt.procaryote.com',
+    HospitalApp.pharm: 'https://my-hospital-pharm.procaryote.com',
+    HospitalApp.eai: 'https://my-hospital-eai.procaryote.com',
+    HospitalApp.device: 'https://my-hospital-dev.procaryote.com',
   };
 
   /// The query-string key that overrides each application's URL.
