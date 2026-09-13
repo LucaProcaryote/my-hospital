@@ -1,0 +1,18 @@
+{
+  "@@locale": "fr",
+  "portalTagline": "Un hôpital pédagogique, à portée de clic.",
+  "portalIntro": "Cinq applications qui partagent une même population de patients. Ouvrez-les côte à côte et suivez une admission de l’ADT jusqu’au dossier.",
+  "portalApplications": "Applications",
+  "portalDevices": "Appareils connectés",
+  "portalDevicesBody": "Dix simulateurs, un par étudiant. Chacun publie poids, température, fréquence cardiaque, saturation en oxygène et activité.",
+  "portalOpen": "Ouvrir",
+  "portalOpensNewTab": "S’ouvre dans un nouvel onglet",
+  "portalDescEhr": "Dossier patient, prescriptions, observations et notes cliniques.",
+  "portalDescAdt": "Admissions, transferts et sorties, sur un tableau des lits.",
+  "portalDescPharm": "L’armoire : stock, stupéfiants et délivrance.",
+  "portalDescEai": "Ressources FHIR, messages, et un éditeur visuel de flux d’intégration.",
+  "portalDescDevice": "Simulateurs de signes vitaux, et relevés d’une montre connectée.",
+  "portalDeviceNumber": "Appareil {number}",
+  "portalSource": "Code source",
+  "portalUnreachable": "Impossible d’ouvrir {url}"
+}

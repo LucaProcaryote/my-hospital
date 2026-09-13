@@ -1,0 +1,75 @@
+# Builds and publishes the portal to Firebase Hosting.
+#
+# The portal goes on the project's DEFAULT site, my-hospital-2026.web.app -
+# the front door of the whole thing. The five applications have their own
+# sites beside it.
+#
+# Needs one repository secret: FIREBASE_SERVICE_ACCOUNT, holding the JSON key
+# of a service account with the "Firebase Hosting Admin" role.
+name: Deploy to Firebase Hosting
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.repository_owner == 'LucaProcaryote'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check that a deploy credential is configured
+        env:
+          KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          if [ -z "$KEY" ]; then
+            echo "::error::No FIREBASE_SERVICE_ACCOUNT secret is set, so there is nothing to deploy with."
+            echo "::error::Create a service account with the Firebase Hosting Admin role in the"
+            echo "::error::my-hospital-2026 project, then paste its whole JSON key into"
+            echo "::error::Settings -> Secrets and variables -> Actions -> New repository secret."
+            exit 1
+          fi
+
+      # The default site exists from the moment the Firebase project does, so
+      # unlike the five application sites there is nothing to create here.
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+
+      - name: Build for the web
+        env:
+          # Optional. Set these repository variables to point the portal at
+          # somewhere other than the hosted sites - a staging project, say.
+          # Left unset, the compiled-in defaults are the five .web.app URLs.
+          EHR_URL: ${{ vars.EHR_URL }}
+          ADT_URL: ${{ vars.ADT_URL }}
+          PHARM_URL: ${{ vars.PHARM_URL }}
+          EAI_URL: ${{ vars.EAI_URL }}
+          DEVICE_URL: ${{ vars.DEVICE_URL }}
+        run: |
+          defines=()
+          for name in EHR_URL ADT_URL PHARM_URL EAI_URL DEVICE_URL; do
+            value="${!name}"
+            [ -n "$value" ] && defines+=(--dart-define="$name=$value")
+          done
+
+          # Self-host CanvasKit: see tools/deploy_hosting.sh for why.
+          flutter build web --release --no-web-resources-cdn "${defines[@]}"
+
+      - name: Deploy
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: my-hospital-2026
+          target: portal
+          channelId: live
