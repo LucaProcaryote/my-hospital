@@ -57,5 +57,7 @@
   "adminErrorSelf": "Vous ne pouvez pas faire cela sur votre propre compte. Quelqu'un doit rester administrateur.",
   "adminErrorUnreachable": "L'API d'administration n'a pas répondu. Vérifiez l'adresse et que le service tourne.",
   "adminErrorNotAdmin": "L'API a refusé : ce compte n'est pas administrateur.",
-  "adminErrorGeneric": "L'API a refusé : {code}"
+  "adminErrorGeneric": "L'API a refusé : {code}",
+  "adminShowPassword": "Afficher le mot de passe",
+  "adminHidePassword": "Masquer le mot de passe"
 }

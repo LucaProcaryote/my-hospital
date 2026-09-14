@@ -212,4 +212,10 @@ class PortalLocalizationsFr extends PortalLocalizations {
   String adminErrorGeneric(String code) {
     return 'L\'API a refusé : $code';
   }
+
+  @override
+  String get adminShowPassword => 'Afficher le mot de passe';
+
+  @override
+  String get adminHidePassword => 'Masquer le mot de passe';
 }

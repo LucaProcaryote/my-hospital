@@ -447,6 +447,18 @@ abstract class PortalLocalizations {
   /// In en, this message translates to:
   /// **'The API refused: {code}'**
   String adminErrorGeneric(String code);
+
+  /// No description provided for @adminShowPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Show password'**
+  String get adminShowPassword;
+
+  /// No description provided for @adminHidePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide password'**
+  String get adminHidePassword;
 }
 
 class _PortalLocalizationsDelegate
