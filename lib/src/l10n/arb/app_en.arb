@@ -99,5 +99,7 @@
         "type": "String"
       }
     }
-  }
+  },
+  "adminShowPassword": "Show password",
+  "adminHidePassword": "Hide password"
 }

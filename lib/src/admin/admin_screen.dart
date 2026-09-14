@@ -539,15 +539,12 @@ class _SignInFormState extends State<_SignInForm> {
                     (value ?? '').contains('@') ? null : l10n.adminRequired,
               ),
               Gap.h16,
-              TextFormField(
+              PasswordField(
                 controller: _password,
-                obscureText: true,
+                label: l10n.adminPassword,
                 autofillHints: const <String>[AutofillHints.password],
-                decoration: InputDecoration(
-                  labelText: l10n.adminPassword,
-                  prefixIcon: const Icon(Icons.lock_outline_rounded),
-                ),
-                onFieldSubmitted: (_) => _submit(),
+                prefixIcon: Icons.lock_outline_rounded,
+                onSubmitted: _submit,
                 validator: (value) =>
                     (value ?? '').isEmpty ? l10n.adminRequired : null,
               ),
@@ -573,6 +570,79 @@ class _SignInFormState extends State<_SignInForm> {
   void _submit() {
     if (!(_formKey.currentState?.validate() ?? false)) return;
     widget.onSubmit(_email.text.trim(), _password.text);
+  }
+}
+
+/// A password field that can be read back.
+///
+/// Masking protects a password from the room, which matters at a lectern and
+/// on a projector. It does not help the person typing one, and every password
+/// here is being *chosen* rather than recalled - a new account, a reset. Typing
+/// eighteen characters blind into a field that will not tell you what it holds,
+/// twice, is how people end up locked out of accounts they created themselves.
+///
+/// So: masked by default, and revealed on request. Firebase stores only a
+/// hash, so this is the single moment at which a password can be checked at
+/// all - afterwards nobody can read it back, not the console, not this
+/// application, not Google.
+class PasswordField extends StatefulWidget {
+  const PasswordField({
+    super.key,
+    required this.controller,
+    required this.label,
+    this.helper,
+    this.prefixIcon,
+    this.autofocus = false,
+    this.autofillHints,
+    this.onSubmitted,
+    this.validator,
+  });
+
+  final TextEditingController controller;
+  final String label;
+  final String? helper;
+  final IconData? prefixIcon;
+  final bool autofocus;
+  final Iterable<String>? autofillHints;
+  final VoidCallback? onSubmitted;
+  final String? Function(String?)? validator;
+
+  @override
+  State<PasswordField> createState() => _PasswordFieldState();
+}
+
+class _PasswordFieldState extends State<PasswordField> {
+  bool _visible = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = PortalLocalizations.of(context);
+    final label = _visible ? l10n.adminHidePassword : l10n.adminShowPassword;
+
+    return TextFormField(
+      controller: widget.controller,
+      obscureText: !_visible,
+      autofocus: widget.autofocus,
+      autofillHints: widget.autofillHints?.toList(),
+      decoration: InputDecoration(
+        labelText: widget.label,
+        helperText: widget.helper,
+        prefixIcon: widget.prefixIcon == null ? null : Icon(widget.prefixIcon),
+        suffixIcon: IconButton(
+          tooltip: label,
+          // Named for a screen reader too: the icon alone says nothing.
+          icon: Icon(
+            _visible ? Icons.visibility_off_rounded : Icons.visibility_rounded,
+            semanticLabel: label,
+          ),
+          onPressed: () => setState(() => _visible = !_visible),
+        ),
+      ),
+      onFieldSubmitted: widget.onSubmitted == null
+          ? null
+          : (_) => widget.onSubmitted!(),
+      validator: widget.validator,
+    );
   }
 }
 
@@ -788,13 +858,10 @@ class _NewUserDialogState extends State<_NewUserDialog> {
                 decoration: InputDecoration(labelText: l10n.adminDisplayName),
               ),
               Gap.h16,
-              TextFormField(
+              PasswordField(
                 controller: _password,
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: l10n.adminPassword,
-                  helperText: l10n.adminPasswordRule,
-                ),
+                label: l10n.adminPassword,
+                helper: l10n.adminPasswordRule,
                 validator: (value) =>
                     (value ?? '').length >= 8 ? null : l10n.adminPasswordRule,
               ),
@@ -873,14 +940,11 @@ class _PasswordDialogState extends State<_PasswordDialog> {
           children: <Widget>[
             Text(widget.email),
             Gap.h16,
-            TextFormField(
+            PasswordField(
               controller: _password,
-              obscureText: true,
+              label: l10n.adminNewPassword,
+              helper: l10n.adminPasswordRule,
               autofocus: true,
-              decoration: InputDecoration(
-                labelText: l10n.adminNewPassword,
-                helperText: l10n.adminPasswordRule,
-              ),
               validator: (value) =>
                   (value ?? '').length >= 8 ? null : l10n.adminPasswordRule,
             ),

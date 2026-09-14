@@ -212,4 +212,10 @@ class PortalLocalizationsEn extends PortalLocalizations {
   String adminErrorGeneric(String code) {
     return 'The API refused: $code';
   }
+
+  @override
+  String get adminShowPassword => 'Show password';
+
+  @override
+  String get adminHidePassword => 'Hide password';
 }

@@ -212,4 +212,10 @@ class PortalLocalizationsNl extends PortalLocalizations {
   String adminErrorGeneric(String code) {
     return 'De API weigerde: $code';
   }
+
+  @override
+  String get adminShowPassword => 'Wachtwoord tonen';
+
+  @override
+  String get adminHidePassword => 'Wachtwoord verbergen';
 }

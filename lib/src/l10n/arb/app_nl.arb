@@ -57,5 +57,7 @@
   "adminErrorSelf": "Dat kunt u niet met uw eigen account doen. Iemand moet beheerder blijven.",
   "adminErrorUnreachable": "De beheer-API antwoordde niet. Controleer het adres en of de service draait.",
   "adminErrorNotAdmin": "De API weigerde: dit account is geen beheerder.",
-  "adminErrorGeneric": "De API weigerde: {code}"
+  "adminErrorGeneric": "De API weigerde: {code}",
+  "adminShowPassword": "Wachtwoord tonen",
+  "adminHidePassword": "Wachtwoord verbergen"
 }

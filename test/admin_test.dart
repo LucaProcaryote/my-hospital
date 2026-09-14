@@ -375,6 +375,40 @@ void main() {
       );
     });
 
+    testWidgets('the password can be read back before it is sent', (
+      WidgetTester tester,
+    ) async {
+      // Every password here is being chosen, not recalled. Typing one blind,
+      // twice, is how people lock themselves out of their own new account.
+      await pump(
+        tester,
+        config: AdminConfig.resolve(define: 'https://api.example'),
+        auth: FakeAuth(),
+        client: AdminClient(
+          config: AdminConfig.resolve(define: 'https://api.example'),
+          tokenSource: () async => null,
+          httpClient: MockClient((_) async => http.Response('{}', 200)),
+        ),
+      );
+
+      final field = find.byType(PasswordField);
+      expect(field, findsOneWidget);
+
+      TextField inner() => tester.widget<TextField>(
+        find.descendant(of: field, matching: find.byType(TextField)),
+      );
+
+      expect(inner().obscureText, isTrue, reason: 'masked until asked');
+
+      await tester.tap(find.byIcon(Icons.visibility_rounded));
+      await tester.pump();
+      expect(inner().obscureText, isFalse);
+
+      await tester.tap(find.byIcon(Icons.visibility_off_rounded));
+      await tester.pump();
+      expect(inner().obscureText, isTrue, reason: 'and it goes back');
+    });
+
     testWidgets('a wrong password is reported on the sign-in form', (
       WidgetTester tester,
     ) async {
